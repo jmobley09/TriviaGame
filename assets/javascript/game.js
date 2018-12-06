@@ -45,34 +45,75 @@ var QA = {
     questions: {
         one: "What is Bender's catch phrase?",
         two: "How is Fry related to the professor?",
-        three: "Where is Leela from?"
+        three: "Where is Leela from?",
+        four: "What Planet is Lurr from?"
     },
     answers: {
-        one: "Bite My Shiney Metal Ass",
-        two: "Uncle",
-        three: "Orphange"
+        one: ["Bite My Shiney Metal Ass", 'Eat My Shorts', 'Death to Humans', 'Here We Go Again'],
+        two: ["Uncle", 'Cousin', 'Friend', 'Brother', 'Not Related'],
+        three: ["Orphange", 'Distant Planet', 'LA', 'Parallel Universe', 'The Moon'],
+        four: ['Omicron Persi i-8', 'Amazonian', 'New New York', 'The Sewers']
+
     }
 }
 
-// Holds the number that is used for the questions, answers and displaying
-var num = 0;
-var numstring = ['one', 'two', 'three'];
+// Puts the trivia game on the screen
+function runGame() {
 
-// Pulls the question based on number and possible answers & displays to appropiate div
-function DisQuestion() {
-    var idnum = '#' + 'Question' + numstring[num];
-    var questnum = 'QA.questions.' + numstring[num];
-    var ansnum = 'QA.answers.' + numstring[num];
-    $(idnum).append(questnum);
-    $(idnum).append(ansnum);
+    // Displays the questions to the page
+    function DisQuestions() {
+        $('#Questionone').append(QA.questions.one + '<br>' + '<br>');
+        $('#Questiontwo').append(QA.questions.two + '<br>' + '<br>');
+        $('#Questionthree').append(QA.questions.three + '<br>' + '<br>');
+        $('#Questionfour').append(QA.questions.four + '<br>' + '<br>');
+    }
 
-    console.log(idnum);
-}
+    // Puts the correct answer to each question
+    function DisAnswers() {
+
+        // Puts the correct answer on the page with value
+        var inputdiv = "<input type='radio' name='answer' value='1' />"
+        $('#Questionone').append(inputdiv + QA.answers.one[0]);
+        $('#Questiontwo').append(inputdiv + QA.answers.two[0]);
+        $('#Questionthree').append(inputdiv + QA.answers.three[0]);
+        $('#Questionfour').append(inputdiv + QA.answers.four[0]);
+
+        // Puts all remaining answers on the page with a different value
+        for (var i = 1; i < 4; i++) {
+            var inputdiv = "<input type='radio' name='answer2' value='2' />"
+            $('#Questionone').append(inputdiv + QA.answers.one[i]);
+            $('#Questiontwo').append(inputdiv + QA.answers.two[i]);
+            $('#Questionthree').append(inputdiv + QA.answers.three[i]);
+            $('#Questionfour').append(inputdiv + QA.answers.four[i]);
+        }
+
+    }
+
+    function submit() {
+        var btn = $('<button>');
+        btn.attr('id', 'submit');
+        btn.append('Submit');
+
+        $('#subBtn').append(btn);
+    }
+
+    DisQuestions();
+    DisAnswers();
+    submit();
+    function Score() {
+        $("#submit").click(function () {
+            var val = $('input[name=answer]:checked').val();
+            // if (val)
+        });
+    }
+
+};
+
+
 
 // Starts the game
 $('#StartBttn').click(function () {
     startTime();
     $('#StartBttn').detach();
-});
-
-DisQuestion();
+    runGame();
+})
