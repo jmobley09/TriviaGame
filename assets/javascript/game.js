@@ -51,11 +51,6 @@ function timeConverter(t) {
     return minutes + ":" + seconds;
 };
 
-
-
-
-
-
 //Object containing an object of questions and object of answers
 var QA = {
     questions: {
@@ -95,14 +90,15 @@ function runGame() {
 
         // Puts all remaining answers on the page with a different value
         for (var i = 1; i < 4; i++) {
-            $('#Questionone').append("<input type='radio' name='answer1' value='1' />" + QA.answers.one[i]);
-            $('#Questiontwo').append("<input type='radio' name='answer2' value='1' />" + QA.answers.two[i]);
-            $('#Questionthree').append("<input type='radio' name='answer3' value='1' />" + QA.answers.three[i]);
-            $('#Questionfour').append("<input type='radio' name='answer4' value='1' />" + QA.answers.four[i]);
+            $('#Questionone').append("<input type='radio' name='answer1' value='2' />" + QA.answers.one[i]);
+            $('#Questiontwo').append("<input type='radio' name='answer2' value='2' />" + QA.answers.two[i]);
+            $('#Questionthree').append("<input type='radio' name='answer3' value='2' />" + QA.answers.three[i]);
+            $('#Questionfour').append("<input type='radio' name='answer4' value='2' />" + QA.answers.four[i]);
         }
 
     }
 
+    // Dynamically adds a submit button
     function submit() {
         var btn = $('<button>');
         btn.attr('id', 'submit');
@@ -111,18 +107,36 @@ function runGame() {
         $('#subBtn').append(btn);
     }
 
+    // Function calls to add questions, answers, and buttons of game to screen
     DisQuestions();
     DisAnswers();
     submit();
-    function Score() {
-        $("#submit").click(function () {
-            var val = $('input[name=answer]:checked').val();
-            // if (val)
-        });
-    }
-
 };
 
+var correct;
+var incorrect;
+var radioval = $("input[name='answer1']:checked").val();
+
+function score() {
+    
+    console.log(radioval);
+    if (radioval == 1) {
+        correct += 1;
+    }
+    else {
+        incorrect += 1;
+    }
+
+    console.log(correct);
+    console.log(incorrect);
+}
+
+
+// Ends the game when the submit Button is clicked
+$('#subBtn').click(function() {
+    gameOver();
+    score();
+});
 
 
 // Starts the game
