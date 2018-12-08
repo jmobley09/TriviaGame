@@ -1,7 +1,7 @@
 // Prevents clock from being sped up
 var TimerOn = false;
 var intervalId;
-var time = 120;
+var time = 5;
 
 // Starts the timeer
 function startTime() {
@@ -9,7 +9,6 @@ function startTime() {
         intervalId = setInterval(count, 1000);
         TimerOn = true;
     }
-
 };
 
 // sets decriment of timer and displays to the screen
@@ -18,7 +17,11 @@ function count() {
     var countTime = timeConverter(time);
 
     $('#DisplayTime').html('Time Remaining: ' + countTime);
-}
+    
+    if (time == 0) {
+        $('#game').html('Game Over');
+    }
+};
 //  Takes the current time in seconds and convert it to minutes and seconds (mm:ss).
 function timeConverter(t) {
 
@@ -38,7 +41,12 @@ function timeConverter(t) {
     }
 
     return minutes + ":" + seconds;
-}
+};
+
+
+
+
+
 
 //Object containing an object of questions and object of answers
 var QA = {
@@ -55,7 +63,7 @@ var QA = {
         four: ['Omicron Persi i-8', 'Amazonian', 'New New York', 'The Sewers']
 
     }
-}
+};
 
 // Puts the trivia game on the screen
 function runGame() {
@@ -116,4 +124,4 @@ $('#StartBttn').click(function () {
     startTime();
     $('#StartBttn').detach();
     runGame();
-})
+});
