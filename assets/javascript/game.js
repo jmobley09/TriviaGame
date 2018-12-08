@@ -1,7 +1,7 @@
 // Prevents clock from being sped up
 var TimerOn = false;
 var intervalId;
-var time = 5;
+var time = 60;
 
 // Starts the timeer
 function startTime() {
@@ -11,6 +11,12 @@ function startTime() {
     }
 };
 
+// game end function that changes screen and displays score
+function gameOver() {
+    $('#game').html('Game Over');
+    $('#game').append('Score: ');
+}
+
 // sets decriment of timer and displays to the screen
 function count() {
     time -= 1;
@@ -18,10 +24,12 @@ function count() {
 
     $('#DisplayTime').html('Time Remaining: ' + countTime);
     
+    // if time runs out then runs game end functions
     if (time == 0) {
-        $('#game').html('Game Over');
+        gameOver();
     }
 };
+
 //  Takes the current time in seconds and convert it to minutes and seconds (mm:ss).
 function timeConverter(t) {
 
@@ -80,19 +88,17 @@ function runGame() {
     function DisAnswers() {
 
         // Puts the correct answer on the page with value
-        var inputdiv = "<input type='radio' name='answer' value='1' />"
-        $('#Questionone').append(inputdiv + QA.answers.one[0]);
-        $('#Questiontwo').append(inputdiv + QA.answers.two[0]);
-        $('#Questionthree').append(inputdiv + QA.answers.three[0]);
-        $('#Questionfour').append(inputdiv + QA.answers.four[0]);
+        $('#Questionone').append("<input type='radio' name='answer1' value='1' />" + QA.answers.one[0]);
+        $('#Questiontwo').append("<input type='radio' name='answer2' value='1' />" + QA.answers.two[0]);
+        $('#Questionthree').append("<input type='radio' name='answer3' value='1' />" + QA.answers.three[0]);
+        $('#Questionfour').append("<input type='radio' name='answer4' value='1' />" + QA.answers.four[0]);
 
         // Puts all remaining answers on the page with a different value
         for (var i = 1; i < 4; i++) {
-            var inputdiv = "<input type='radio' name='answer2' value='2' />"
-            $('#Questionone').append(inputdiv + QA.answers.one[i]);
-            $('#Questiontwo').append(inputdiv + QA.answers.two[i]);
-            $('#Questionthree').append(inputdiv + QA.answers.three[i]);
-            $('#Questionfour').append(inputdiv + QA.answers.four[i]);
+            $('#Questionone').append("<input type='radio' name='answer1' value='1' />" + QA.answers.one[i]);
+            $('#Questiontwo').append("<input type='radio' name='answer2' value='1' />" + QA.answers.two[i]);
+            $('#Questionthree').append("<input type='radio' name='answer3' value='1' />" + QA.answers.three[i]);
+            $('#Questionfour').append("<input type='radio' name='answer4' value='1' />" + QA.answers.four[i]);
         }
 
     }
