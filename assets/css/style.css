@@ -1,13 +1,31 @@
-.title {
-    text-align: center;
-    font-weight: bolder;
-    font-size: 350%
-}
-
 body {
     background-image: url("../images/background.jpg");
+    color: #f2d21d;
+    position: fixed;
+    top: 40%;
+    left: 20%;
+    width: 103%;
 }
 
 .row {
-    margin: 3%;
+    margin: 2%;
+}
+
+#StartBttn {
+    position: Fixed;
+    left: 46%;
+    top: 50%;
+    font-size: 250%
+}
+
+#submit {
+    position: relative;
+    left: 20%;
+}
+
+.ScoreDiv {
+    font-size: 250%;
+    position: fixed;
+    left: 44%;
+    top: 50%;
 }

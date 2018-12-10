@@ -13,11 +13,16 @@ function startTime() {
 
 // game end function that changes screen and displays score
 function gameOver() {
-    $('#game').html('Game Over' + '<br>');
-    $('#game').append('Score: ');
+    // var to hold the elements for div to be displayed
+    var ScoreDiv = $('<div>');
 
-    console.log(correct);
-    console.log(incorrect);
+
+    ScoreDiv.addClass('ScoreDiv');
+    ScoreDiv.html('Game Over' + '<br>');
+    ScoreDiv.append('Correct: ' + correct + '<br>');
+    ScoreDiv.append('Incorrect: ' + incorrect + '<br>');
+
+    $('#game').html(ScoreDiv);
 }
 
 // sets decriment of timer and displays to the screen
@@ -63,10 +68,10 @@ var QA = {
         four: "What Planet is Lurr from?"
     },
     answers: {
-        one: ["Bite My Shiney Metal Ass", 'Eat My Shorts', 'Death to Humans', 'Here We Go Again'],
-        two: ["Uncle", 'Cousin', 'Friend', 'Brother', 'Not Related'],
-        three: ["Orphange", 'Distant Planet', 'LA', 'Parallel Universe', 'The Moon'],
-        four: ['Omicron Persi i-8', 'Amazonian', 'New New York', 'The Sewers']
+        one: ["Bite My Shiney Metal Ass ", 'Eat My Shorts ', 'Death to Humans ', 'Here We Go Again '],
+        two: ["Uncle ", 'Cousin ', 'Friend ', 'Brother ', 'Not Related '],
+        three: ["Orphange ", 'Distant Planet ', 'LA ', 'Parallel Universe ', 'The Moon '],
+        four: ['Omicron Persi i-8 ', 'Amazonian ', 'New New York ', 'The Sewers ']
 
     }
 };
@@ -116,9 +121,11 @@ function runGame() {
     submit();
 };
 
+// Vars to hold the current score of the game
 var correct = 0;
 var incorrect = 0;
 
+// Pulls value of radio button and adjusts score depending on if it was correct or not
 function score() {
     var selValue1 = $('input[name=answer1]:checked').val();
     var selValue2 = $('input[name=answer2]:checked').val();
@@ -136,7 +143,6 @@ function score() {
         };
     };
 };
-
 
 // Ends the game when the submit Button is clicked
 $('#subBtn').click(function () {
