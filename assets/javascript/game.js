@@ -13,8 +13,11 @@ function startTime() {
 
 // game end function that changes screen and displays score
 function gameOver() {
-    $('#game').html('Game Over');
+    $('#game').html('Game Over' + '<br>');
     $('#game').append('Score: ');
+
+    console.log(correct);
+    console.log(incorrect);
 }
 
 // sets decriment of timer and displays to the screen
@@ -23,7 +26,7 @@ function count() {
     var countTime = timeConverter(time);
 
     $('#DisplayTime').html('Time Remaining: ' + countTime);
-    
+
     // if time runs out then runs game end functions
     if (time == 0) {
         gameOver();
@@ -113,29 +116,32 @@ function runGame() {
     submit();
 };
 
-var correct;
-var incorrect;
-var radioval = $("input[name='answer1']:checked").val();
+var correct = 0;
+var incorrect = 0;
 
 function score() {
-    
-    console.log(radioval);
-    if (radioval == 1) {
-        correct += 1;
-    }
-    else {
-        incorrect += 1;
-    }
+    var selValue1 = $('input[name=answer1]:checked').val();
+    var selValue2 = $('input[name=answer2]:checked').val();
+    var selValue3 = $('input[name=answer3]:checked').val();
+    var selValue4 = $('input[name=answer4]:checked').val();
 
-    console.log(correct);
-    console.log(incorrect);
-}
+    var values = [selValue1, selValue2, selValue3, selValue4];
+
+    for (var i = 0; i < values.length; i++) {
+        if (values[i] == 1) {
+            correct++;
+        }
+        else {
+            incorrect++;
+        };
+    };
+};
 
 
 // Ends the game when the submit Button is clicked
-$('#subBtn').click(function() {
-    gameOver();
+$('#subBtn').click(function () {
     score();
+    gameOver();
 });
 
 
